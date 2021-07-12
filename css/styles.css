@@ -9,3 +9,42 @@
 .width-100 {
   width: 100%;
 }
+
+#title {
+  width: 100%;
+}
+
+#photo-url {
+  width: 100%;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.justify-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-button {
+  padding: 5px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: #562b81;
+  font-size: 15px;
+}
+
+input {
+  border: 1px solid #b6b6b6;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+textarea {
+  width: 100%;
+  border: 1px solid #b6b6b6;
+  border-radius: 5px;
+  padding: 5px;
+}
