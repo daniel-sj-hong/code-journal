@@ -24,3 +24,40 @@ function handleSubmit(event) {
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
 }
+
+function tree(newObject) {
+  var $ul = document.createElement('ul');
+
+  var $li = document.createElement('li');
+  $ul.appendChild($li);
+
+  var $rowOne = document.createElement('div');
+  $rowOne.setAttribute('class', 'row');
+  $li.appendChild($rowOne);
+
+  var $columnHalfOne = document.createElement('div');
+  $columnHalfOne.setAttribute('class', 'column-half');
+  $rowOne.appendChild($columnHalfOne);
+
+  var $img = document.createElement('img');
+  $img.setAttribute('src', newObject.url);
+  $columnHalfOne.appendChild($img);
+
+  var $columnHalfTwo = document.createElement('div');
+  $columnHalfTwo.setAttribute('class', 'column-half');
+  $rowOne.appendChild($columnHalfTwo);
+
+  var $rowTwo = document.createElement('div');
+  $rowTwo.setAttribute('class', 'row');
+  $columnHalfTwo.appendChild($rowTwo);
+
+  var $h3 = document.createElement('h3');
+  $h3.textContent = newObject.title;
+
+  var $rowThree = document.createElement('div');
+  $rowThree.setAttribute('class', 'row');
+  $columnHalfTwo.appendChild($rowThree);
+
+  var $p = document.createElement('p');
+  $p.textContent = newObject.notes;
+}
