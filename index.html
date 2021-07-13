@@ -13,12 +13,60 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-  </header>
-  <main>
-  </main>
+  <div class="master-container">
+
+    <header class="background-purple">
+      <div class="container">
+        <div class="row">
+          <div class="column-full">
+            <p class="font-white">Code Journal</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <form>
+        <div class="container" data-view="entry-form">
+          <div class="row">
+            <div class="column-full">
+              <h1>New Entry</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-half">
+              <img class="width-100" src="images/placeholder-image-square.jpg">
+            </div>
+            <div class="column-half">
+              <label for="title"><p class="margin-top-0">Title</p></label>
+              <input type="text" name="title" id="title" required>
+              <label for="photo"><p>Photo-URL</p></label>
+              <input type="text" name="photo" id="photo" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <label for="notes"><h4>Notes</h4></label>
+              <textarea name="notes" id="notes" rows="10" required></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full justify-end">
+              <button class="save-button margin-top-10">SAVE</button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </main>
+
+
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
