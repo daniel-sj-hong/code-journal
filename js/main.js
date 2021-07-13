@@ -16,6 +16,7 @@ function handleSubmit(event) {
   var newObject = {
     title: $form.elements.title.value,
     url: $form.elements.photo.value,
-    notes: $form.elements.notes.value
+    notes: $form.elements.notes.value,
+    nextEntryId: 1
   };
 }
