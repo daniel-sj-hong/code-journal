@@ -19,6 +19,7 @@ function handleSubmit(event) {
     notes: $form.elements.notes.value,
     nextEntryId: data.nextEntryId
   };
-  data.entries.push(newObject);
   data.nextEntryId++;
+  data.entries.unshift(newObject);
+  console.log(data.entries);
 }
