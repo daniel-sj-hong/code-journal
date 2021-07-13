@@ -3,9 +3,11 @@
 var $photo = document.querySelector('#photo');
 var $img = document.querySelector('img');
 var $form = document.querySelector('form');
+var $li = document.querySelector('li');
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
+window.addEventListener('DOMContentLoaded', handleLoad);
 
 function handleInput(event) {
   $img.setAttribute('src', event.target.value);
@@ -25,11 +27,8 @@ function handleSubmit(event) {
   $form.reset();
 }
 
-function tree(newObject) {
-  var $ul = document.createElement('ul');
-
+function renderTree(newObject) {
   var $li = document.createElement('li');
-  $ul.appendChild($li);
 
   var $rowOne = document.createElement('div');
   $rowOne.setAttribute('class', 'row');
@@ -53,6 +52,7 @@ function tree(newObject) {
 
   var $h3 = document.createElement('h3');
   $h3.textContent = newObject.title;
+  $rowTwo.appendChild($h3);
 
   var $rowThree = document.createElement('div');
   $rowThree.setAttribute('class', 'row');
@@ -60,4 +60,14 @@ function tree(newObject) {
 
   var $p = document.createElement('p');
   $p.textContent = newObject.notes;
+  $rowThree.appendChild($p);
+
+  return $li;
+}
+
+function handleLoad(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    var value = renderTree(data.entries[i]);
+    $li.appendChild(value);
+  }
 }
