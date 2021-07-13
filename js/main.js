@@ -21,5 +21,5 @@ function handleSubmit(event) {
   };
   data.nextEntryId++;
   data.entries.unshift(newObject);
-  console.log(data.entries);
+  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
