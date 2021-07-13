@@ -17,7 +17,7 @@ function handleSubmit(event) {
     title: $form.elements.title.value,
     url: $form.elements.photo.value,
     notes: $form.elements.notes.value,
-    nextEntryId: data.nextEntryId
+    entryId: data.nextEntryId
   };
   data.nextEntryId++;
   data.entries.unshift(newObject);
