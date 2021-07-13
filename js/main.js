@@ -1,6 +1,6 @@
 /* global data */
 /* exported data */
-var $photo = document.querySelector('#photo-url');
+var $photo = document.querySelector('#photo');
 var $img = document.querySelector('img');
 var $form = document.querySelector('form');
 
@@ -12,5 +12,10 @@ function handleInput(event) {
 }
 
 function handleSubmit(event) {
-
+  event.preventDefault();
+  var newObject = {
+    title: $form.elements.title.value,
+    url: $form.elements.photo.value,
+    notes: $form.elements.notes.value
+  };
 }
