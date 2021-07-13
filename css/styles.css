@@ -48,3 +48,11 @@ textarea {
   border-radius: 5px;
   padding: 5px;
 }
+
+li {
+  list-style-type: none;
+}
+
+img {
+  width: 100%;
+}
