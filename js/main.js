@@ -82,9 +82,9 @@ function handleLoad(event) {
 }
 
 if (data.view === 'entries') {
-  handleClick();
+  switchView();
 } else if (data.view === 'entry-form') {
-  handleNew();
+  switchView();
 }
 
 function handleClick(event) {
