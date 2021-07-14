@@ -4,10 +4,13 @@ var $photo = document.querySelector('#photo');
 var $img = document.querySelector('img');
 var $form = document.querySelector('form');
 var $li = document.querySelector('li');
+var $entries = document.querySelector('.entries');
+var $input = document.querySelectorAll('.input');
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
 window.addEventListener('DOMContentLoaded', handleLoad);
+$entries.addEventListener('click', handleClick);
 
 function handleInput(event) {
   $img.setAttribute('src', event.target.value);
@@ -69,5 +72,17 @@ function handleLoad(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var value = renderTree(data.entries[i]);
     $li.appendChild(value);
+  }
+}
+
+function handleClick(event) {
+  data.view = 'entries';
+  for (var i = 0; i < $input.length; i++) {
+    var test = $input[i].getAttribute('data-view');
+    if (data.view === test) {
+      $input[i].className = 'input';
+    } else {
+      $input[i].className = 'input hidden';
+    }
   }
 }
