@@ -6,6 +6,7 @@ var $form = document.querySelector('form');
 var $li = document.querySelector('li');
 var $entries = document.querySelector('.entries');
 var $input = document.querySelectorAll('.input');
+var $noEntries = document.querySelector('.none');
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
@@ -54,6 +55,7 @@ function renderTree(newObject) {
   $columnHalfTwo.appendChild($rowTwo);
 
   var $h3 = document.createElement('h3');
+  $h3.setAttribute('class', 'margin-top-0');
   $h3.textContent = newObject.title;
   $rowTwo.appendChild($h3);
 
@@ -76,10 +78,13 @@ function handleLoad(event) {
 }
 
 function handleClick(event) {
+  if (data.entries.length === 0) {
+    $noEntries.className = 'row none';
+  }
   data.view = 'entries';
   for (var i = 0; i < $input.length; i++) {
-    var test = $input[i].getAttribute('data-view');
-    if (data.view === test) {
+    var view = $input[i].getAttribute('data-view');
+    if (data.view === view) {
       $input[i].className = 'input';
     } else {
       $input[i].className = 'input hidden';

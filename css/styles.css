@@ -57,6 +57,10 @@ ul {
   padding-left: 0;
 }
 
+img {
+  width: 100%;
+}
+
 .align-center {
   display: flex;
   align-items: center;
@@ -73,4 +77,8 @@ a {
   color: white;
   border-radius: 5px;
   font-size: 16px;
+}
+
+.text-center {
+  text-align: center;
 }
