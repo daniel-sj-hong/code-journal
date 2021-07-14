@@ -81,11 +81,7 @@ function handleLoad(event) {
   }
 }
 
-if (data.view === 'entries') {
-  switchView();
-} else if (data.view === 'entry-form') {
-  switchView();
-}
+switchView();
 
 function handleClick(event) {
   data.view = 'entries';
