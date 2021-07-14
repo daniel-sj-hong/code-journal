@@ -22,47 +22,68 @@
 
     <header class="background-purple">
       <div class="container">
-        <div class="row">
-          <div class="column-full">
-            <p class="font-white">Code Journal</p>
-          </div>
+        <div class="row align-center">
+          <p class="font-white">Code Journal</p>
+          <nav>
+            <a href="#" class="font-white padding-left padding-right entries">Entries</a>
+          </nav>
         </div>
       </div>
     </header>
 
     <main>
-      <form>
-        <div class="container" data-view="entry-form">
-          <div class="row">
-            <div class="column-full">
-              <h1>New Entry</h1>
+      <div class="container">
+        <div data-view="entry-form" class="input">
+          <form>
+            <div class="row">
+              <div class="column-full">
+                <h1>New Entry</h1>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="column-half">
-              <img class="width-100" src="images/placeholder-image-square.jpg">
+            <div class="row">
+              <div class="column-half">
+                <img class="width-100" src="images/placeholder-image-square.jpg">
+              </div>
+              <div class="column-half">
+                <label for="title"><p class="margin-top-0">Title</p></label>
+                <input type="text" name="title" id="title" required>
+                <label for="photo"><p>Photo-URL</p></label>
+                <input type="text" name="photo" id="photo" required>
+              </div>
             </div>
-            <div class="column-half">
-              <label for="title"><p class="margin-top-0">Title</p></label>
-              <input type="text" name="title" id="title" required>
-              <label for="photo"><p>Photo-URL</p></label>
-              <input type="text" name="photo" id="photo" required>
+            <div class="row">
+              <div class="column-full">
+                <label for="notes"><h4>Notes</h4></label>
+                <textarea name="notes" id="notes" rows="10" required></textarea>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="column-full">
-              <label for="notes"><h4>Notes</h4></label>
-              <textarea name="notes" id="notes" rows="10" required></textarea>
+            <div class="row">
+              <div class="column-full justify-end">
+                <button class="save-button margin-top-10">SAVE</button>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="column-full justify-end">
-              <button class="save-button margin-top-10">SAVE</button>
-            </div>
-          </div>
+          </form>
         </div>
 
-      </form>
+        <div data-view="entries" class="input hidden">
+          <div class="row">
+            <div class="column-half">
+              <h1>Entries</h1>
+            </div>
+            <div class="column-half align-center justify-end">
+              <a href="#" class="new-button">NEW</a>
+            </div>
+          </div>
+          <div class="row hidden none">
+            <div class="column-full">
+              <p class="text-center">No entries have been recorded.</p>
+            </div>
+          </div>
+          <ul>
+          </ul>
+        </div>
+
+      </div>
     </main>
 
 

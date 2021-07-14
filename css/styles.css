@@ -48,3 +48,45 @@ textarea {
   border-radius: 5px;
   padding: 5px;
 }
+
+.padding-left {
+  padding-left: 10px;
+}
+
+.padding-right {
+  padding-right: 10px;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+img {
+  width: 100%;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.new-button {
+  border: none;
+  background-color: #562b81;
+  padding: 5px 15px;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.text-center {
+  text-align: center;
+}
