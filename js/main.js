@@ -7,11 +7,13 @@ var $li = document.querySelector('li');
 var $entries = document.querySelector('.entries');
 var $input = document.querySelectorAll('.input');
 var $noEntries = document.querySelector('.none');
+var $newButton = document.querySelector('.new-button');
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
 window.addEventListener('DOMContentLoaded', handleLoad);
 $entries.addEventListener('click', handleClick);
+$newButton.addEventListener('click', handleNew);
 
 function handleInput(event) {
   $img.setAttribute('src', event.target.value);
@@ -29,6 +31,7 @@ function handleSubmit(event) {
   data.entries.unshift(newObject);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+  handleClick();
 }
 
 function renderTree(newObject) {
@@ -82,6 +85,18 @@ function handleClick(event) {
     $noEntries.className = 'row none';
   }
   data.view = 'entries';
+  for (var i = 0; i < $input.length; i++) {
+    var view = $input[i].getAttribute('data-view');
+    if (data.view === view) {
+      $input[i].className = 'input';
+    } else {
+      $input[i].className = 'input hidden';
+    }
+  }
+}
+
+function handleNew(event) {
+  data.view = 'entry-form';
   for (var i = 0; i < $input.length; i++) {
     var view = $input[i].getAttribute('data-view');
     if (data.view === view) {
