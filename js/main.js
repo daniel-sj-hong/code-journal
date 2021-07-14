@@ -3,7 +3,7 @@
 var $photo = document.querySelector('#photo');
 var $img = document.querySelector('img');
 var $form = document.querySelector('form');
-var $li = document.querySelector('li');
+var $ul = document.querySelector('ul');
 var $entries = document.querySelector('.entries');
 var $input = document.querySelectorAll('.input');
 var $noEntries = document.querySelector('.none');
@@ -31,7 +31,7 @@ function handleSubmit(event) {
   data.entries.unshift(newObject);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-  $li.prepend(renderTree(newObject));
+  $ul.prepend(renderTree(newObject));
   handleClick();
 }
 
@@ -77,7 +77,7 @@ function renderTree(newObject) {
 function handleLoad(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var value = renderTree(data.entries[i]);
-    $li.appendChild(value);
+    $ul.appendChild(value);
   }
 }
 
@@ -88,30 +88,43 @@ if (data.view === 'entries') {
 }
 
 function handleClick(event) {
-  if (data.entries.length === 0) {
-    $noEntries.className = 'row none';
-  } else {
-    $noEntries.className = 'row hidden none';
-  }
   data.view = 'entries';
-  for (var i = 0; i < $input.length; i++) {
-    var view = $input[i].getAttribute('data-view');
-    if (data.view === view) {
-      $input[i].className = 'input';
-    } else {
-      $input[i].className = 'input hidden';
-    }
+  if (data.view === 'entries') {
+    switchView();
   }
 }
 
 function handleNew(event) {
   data.view = 'entry-form';
-  for (var i = 0; i < $input.length; i++) {
-    var view = $input[i].getAttribute('data-view');
-    if (data.view === view) {
-      $input[i].className = 'input';
-    } else {
-      $input[i].className = 'input hidden';
+  if (data.view === 'entry-form') {
+    switchView();
+  }
+}
+
+function switchView(event) {
+  if (data.entries.length === 0) {
+    $noEntries.className = 'row none';
+  } else {
+    $noEntries.className = 'row hidden none';
+  }
+  if (data.view === 'entry-form') {
+    for (var i = 0; i < $input.length; i++) {
+      var view = $input[i].getAttribute('data-view');
+      if (data.view === view) {
+        $input[i].className = 'input';
+      } else {
+        $input[i].className = 'input hidden';
+      }
+    }
+  }
+  if (data.view === 'entries') {
+    for (var j = 0; j < $input.length; j++) {
+      var setView = $input[j].getAttribute('data-view');
+      if (data.view === setView) {
+        $input[j].className = 'input';
+      } else {
+        $input[j].className = 'input hidden';
+      }
     }
   }
 }
