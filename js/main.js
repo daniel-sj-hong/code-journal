@@ -107,24 +107,12 @@ function switchView(event) {
   } else {
     $noEntries.className = 'row hidden none';
   }
-  if (data.view === 'entry-form') {
-    for (var i = 0; i < $input.length; i++) {
-      var view = $input[i].getAttribute('data-view');
-      if (data.view === view) {
-        $input[i].className = 'input';
-      } else {
-        $input[i].className = 'input hidden';
-      }
-    }
-  }
-  if (data.view === 'entries') {
-    for (var j = 0; j < $input.length; j++) {
-      var setView = $input[j].getAttribute('data-view');
-      if (data.view === setView) {
-        $input[j].className = 'input';
-      } else {
-        $input[j].className = 'input hidden';
-      }
+  for (var i = 0; i < $input.length; i++) {
+    var view = $input[i].getAttribute('data-view');
+    if (data.view === view) {
+      $input[i].className = 'input';
+    } else {
+      $input[i].className = 'input hidden';
     }
   }
 }
