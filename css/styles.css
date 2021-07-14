@@ -49,6 +49,14 @@ textarea {
   padding: 5px;
 }
 
+.padding-left {
+  padding-left: 10px;
+}
+
+.padding-right {
+  padding-right: 10px;
+}
+
 li {
   list-style-type: none;
 }

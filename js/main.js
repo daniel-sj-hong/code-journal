@@ -81,6 +81,32 @@ function handleLoad(event) {
   }
 }
 
+if (data.view === 'entries') {
+  if (data.entries.length === 0) {
+    $noEntries.className = 'row none';
+  } else {
+    $noEntries.className = 'row hidden none';
+  }
+  for (var i = 0; i < $input.length; i++) {
+    var view = $input[i].getAttribute('data-view');
+    if (data.view === view) {
+      $input[i].className = 'input';
+    } else {
+      $input[i].className = 'input hidden';
+    }
+  }
+} else if (data.view === 'entry-form') {
+  data.view = 'entry-form';
+  for (var j = 0; j < $input.length; j++) {
+    var sight = $input[j].getAttribute('data-view');
+    if (data.view === sight) {
+      $input[j].className = 'input';
+    } else {
+      $input[j].className = 'input hidden';
+    }
+  }
+}
+
 function handleClick(event) {
   if (data.entries.length === 0) {
     $noEntries.className = 'row none';
