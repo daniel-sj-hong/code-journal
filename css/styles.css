@@ -57,6 +57,11 @@ ul {
   padding-left: 0;
 }
 
-img {
-  width: 100%;
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
 }

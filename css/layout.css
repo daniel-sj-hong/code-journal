@@ -24,7 +24,8 @@
   }
 
   .column-full,
-  .column-half {
+  .column-half,
+  .column-one-sixth {
     padding: 0 0.75rem;
   }
 
@@ -34,5 +35,9 @@
 
   .margin-top-0 {
     margin-top: 0;
+  }
+
+  .column-one-sixth {
+    flex-basis: calc(100% / 6);
   }
 }
