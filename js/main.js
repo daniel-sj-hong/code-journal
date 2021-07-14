@@ -31,6 +31,7 @@ function handleSubmit(event) {
   data.entries.unshift(newObject);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+  $li.prepend(renderTree(newObject));
   handleClick();
 }
 
@@ -83,6 +84,8 @@ function handleLoad(event) {
 function handleClick(event) {
   if (data.entries.length === 0) {
     $noEntries.className = 'row none';
+  } else {
+    $noEntries.className = 'row hidden none';
   }
   data.view = 'entries';
   for (var i = 0; i < $input.length; i++) {
