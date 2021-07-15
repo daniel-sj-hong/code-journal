@@ -32,12 +32,4 @@
   .column-half {
     width: 50%;
   }
-
-  .margin-top-0 {
-    margin-top: 0;
-  }
-
-  .column-one-sixth {
-    flex-basis: calc(100% / 6);
-  }
 }

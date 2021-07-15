@@ -42,30 +42,34 @@ function renderTree(newObject) {
   $rowOne.setAttribute('class', 'row');
   $li.appendChild($rowOne);
 
-  var $columnHalfOne = document.createElement('div');
-  $columnHalfOne.setAttribute('class', 'column-half');
-  $rowOne.appendChild($columnHalfOne);
+  var $outerColumnHalfOne = document.createElement('div');
+  $outerColumnHalfOne.setAttribute('class', 'column-half');
+  $rowOne.appendChild($outerColumnHalfOne);
 
   var $img = document.createElement('img');
   $img.setAttribute('src', newObject.url);
-  $columnHalfOne.appendChild($img);
+  $img.className = 'entry-image';
+  $outerColumnHalfOne.appendChild($img);
 
-  var $columnHalfTwo = document.createElement('div');
-  $columnHalfTwo.setAttribute('class', 'column-half');
-  $rowOne.appendChild($columnHalfTwo);
+  var $outerColumnHalfTwo = document.createElement('div');
+  $outerColumnHalfTwo.setAttribute('class', 'column-half');
+  $rowOne.appendChild($outerColumnHalfTwo);
 
   var $rowTwo = document.createElement('div');
-  $rowTwo.setAttribute('class', 'row');
-  $columnHalfTwo.appendChild($rowTwo);
+  $rowTwo.setAttribute('class', 'row space-between align-center');
+  $outerColumnHalfTwo.appendChild($rowTwo);
 
   var $h3 = document.createElement('h3');
-  $h3.setAttribute('class', 'margin-top-0');
   $h3.textContent = newObject.title;
   $rowTwo.appendChild($h3);
 
+  var $i = document.createElement('i');
+  $i.setAttribute('class', 'fas fa-pen pen');
+  $rowTwo.appendChild($i);
+
   var $rowThree = document.createElement('div');
   $rowThree.setAttribute('class', 'row');
-  $columnHalfTwo.appendChild($rowThree);
+  $outerColumnHalfTwo.appendChild($rowThree);
 
   var $p = document.createElement('p');
   $p.textContent = newObject.notes;
