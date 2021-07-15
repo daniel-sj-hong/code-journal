@@ -43,22 +43,22 @@ function renderTree(newObject) {
   $rowOne.setAttribute('class', 'row');
   $li.appendChild($rowOne);
 
-  var $outerColumnHalfOne = document.createElement('div');
-  $outerColumnHalfOne.setAttribute('class', 'column-half');
-  $rowOne.appendChild($outerColumnHalfOne);
+  var $columnHalfOne = document.createElement('div');
+  $columnHalfOne.setAttribute('class', 'column-half');
+  $rowOne.appendChild($columnHalfOne);
 
   var $img = document.createElement('img');
   $img.setAttribute('src', newObject.url);
   $img.className = 'entry-image';
-  $outerColumnHalfOne.appendChild($img);
+  $columnHalfOne.appendChild($img);
 
-  var $outerColumnHalfTwo = document.createElement('div');
-  $outerColumnHalfTwo.setAttribute('class', 'column-half');
-  $rowOne.appendChild($outerColumnHalfTwo);
+  var $columnHalftwo = document.createElement('div');
+  $columnHalftwo.setAttribute('class', 'column-half');
+  $rowOne.appendChild($columnHalftwo);
 
   var $rowTwo = document.createElement('div');
   $rowTwo.setAttribute('class', 'row space-between align-center');
-  $outerColumnHalfTwo.appendChild($rowTwo);
+  $columnHalftwo.appendChild($rowTwo);
 
   var $h3 = document.createElement('h3');
   $h3.textContent = newObject.title;
@@ -71,7 +71,7 @@ function renderTree(newObject) {
 
   var $rowThree = document.createElement('div');
   $rowThree.setAttribute('class', 'row');
-  $outerColumnHalfTwo.appendChild($rowThree);
+  $columnHalftwo.appendChild($rowThree);
 
   var $p = document.createElement('p');
   $p.textContent = newObject.notes;
@@ -96,14 +96,6 @@ function handleClick(event) {
   }
 }
 
-function handleEdit(event) {
-  console.log('event.target.tagName', event.target.tagName);
-  if (event.target.tagName === 'I') {
-    var closest = event.target.closest('li');
-    console.log('closest:', closest);
-  }
-}
-
 function handleNew(event) {
   data.view = 'entry-form';
   if (data.view === 'entry-form') {
@@ -124,5 +116,12 @@ function switchView(event) {
     } else {
       $input[i].className = 'input hidden';
     }
+  }
+}
+
+function handleEdit(event) {
+  if (event.target.matches('.pen')) {
+    data.view = 'entry-form';
+    switchView();
   }
 }

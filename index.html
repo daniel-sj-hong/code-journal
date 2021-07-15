@@ -23,10 +23,12 @@
     <header class="background-purple">
       <div class="container">
         <div class="row align-center">
-          <p class="font-white">Code Journal</p>
-          <nav>
-            <a href="#" class="font-white padding-left padding-right entries">Entries</a>
-          </nav>
+          <div class="column-full flex align-center">
+            <p class="font-white">Code Journal</p>
+            <nav>
+              <a href="#" class="font-white padding-left padding-right entries">Entries</a>
+            </nav>
+          </div>
         </div>
       </div>
     </header>
@@ -36,7 +38,7 @@
         <div data-view="entry-form" class="input">
           <form>
             <div class="row">
-              <div class="column-full">
+              <div class="column-full flex">
                 <h1>New Entry</h1>
               </div>
             </div>
@@ -67,8 +69,10 @@
 
         <div data-view="entries" class="input hidden">
           <div class="row space-between align-center">
-            <h1>Entries</h1>
-            <a href="#" class="new-button">NEW</a>
+            <div class="column-full flex justify-between align-center">
+              <h1>Entries</h1>
+              <a href="#" class="new-button justify-end">NEW</a>
+            </div>
           </div>
           <div class="row hidden none">
             <div class="column-full">
