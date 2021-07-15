@@ -14,6 +14,7 @@ $form.addEventListener('submit', handleSubmit);
 window.addEventListener('DOMContentLoaded', handleLoad);
 $entries.addEventListener('click', handleClick);
 $newButton.addEventListener('click', handleNew);
+$ul.addEventListener('click', handleEdit);
 
 function handleInput(event) {
   $img.setAttribute('src', event.target.value);
@@ -92,6 +93,14 @@ function handleClick(event) {
   data.view = 'entries';
   if (data.view === 'entries') {
     switchView();
+  }
+}
+
+function handleEdit(event) {
+  console.log('event.target.tagName', event.target.tagName);
+  if (event.target.tagName === 'I') {
+    var closest = event.target.closest('li');
+    console.log('closest:', closest);
   }
 }
 
