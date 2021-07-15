@@ -34,6 +34,18 @@ function handleSubmit(event) {
   $ul.prepend(renderTree(newObject));
   handleClick();
   data.nextEntryId++;
+  if (data.editing !== null) {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing.entryId === data.entries[i].entryId) {
+        data.entries[i] = {
+          title: $form.elements.title.value,
+          url: $form.elements.photo.value,
+          notes: $form.elements.notes.value,
+          entryId: data.editing.entryId
+        };
+      }
+    }
+  }
 }
 
 function renderTree(newObject) {
@@ -101,6 +113,7 @@ function handleNew(event) {
   if (data.view === 'entry-form') {
     switchView();
   }
+  data.editing = null;
 }
 
 function switchView(event) {
