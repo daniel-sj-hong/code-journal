@@ -123,5 +123,13 @@ function handleEdit(event) {
   if (event.target.matches('.pen')) {
     data.view = 'entry-form';
     switchView();
+    var closest = event.target.closest('i');
+    var viewId = closest.getAttribute('data-view-id');
+    var parseViewId = parseInt(viewId);
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === parseViewId) {
+        data.editing = data.entries[i];
+      }
+    }
   }
 }
