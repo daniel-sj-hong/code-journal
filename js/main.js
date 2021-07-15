@@ -131,5 +131,9 @@ function handleEdit(event) {
         data.editing = data.entries[i];
       }
     }
+    $form.elements.title.value = data.editing.title;
+    $form.elements.photo.value = data.editing.url;
+    $form.elements.notes.value = data.editing.notes;
+    $img.setAttribute('src', data.editing.url);
   }
 }
