@@ -27,12 +27,12 @@ function handleSubmit(event) {
     notes: $form.elements.notes.value,
     entryId: data.nextEntryId
   };
-  data.nextEntryId++;
   data.entries.unshift(newObject);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
   $ul.prepend(renderTree(newObject));
   handleClick();
+  data.nextEntryId++;
 }
 
 function renderTree(newObject) {
@@ -65,6 +65,7 @@ function renderTree(newObject) {
 
   var $i = document.createElement('i');
   $i.setAttribute('class', 'fas fa-pen pen');
+  $i.setAttribute('data-view-id', data.nextEntryId);
   $rowTwo.appendChild($i);
 
   var $rowThree = document.createElement('div');
