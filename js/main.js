@@ -31,7 +31,9 @@ function handleSubmit(event) {
           notes: $form.elements.notes.value,
           entryId: data.editing.entryId
         };
-        renderSingleEntry();
+        var edit = document.querySelectorAll('.journal-entry');
+        var editEntryItem = renderTree(data.entries[i]);
+        edit[i].replaceWith(editEntryItem);
       }
     }
   } else {
@@ -52,53 +54,9 @@ function handleSubmit(event) {
   switchView();
 }
 
-function renderSingleEntry(event) {
-  var $li = document.createElement('li');
-  $ul.appendChild($li);
-
-  var $rowOne = document.createElement('div');
-  $rowOne.setAttribute('class', 'row');
-  $li.appendChild($rowOne);
-
-  var $columnHalfOne = document.createElement('div');
-  $columnHalfOne.setAttribute('class', 'column-half');
-  $rowOne.appendChild($columnHalfOne);
-
-  var $img = document.createElement('img');
-  $img.setAttribute('src', data.entries.url);
-  $img.className = 'entry-image';
-  $columnHalfOne.appendChild($img);
-
-  var $columnHalftwo = document.createElement('div');
-  $columnHalftwo.setAttribute('class', 'column-half');
-  $rowOne.appendChild($columnHalftwo);
-
-  var $rowTwo = document.createElement('div');
-  $rowTwo.setAttribute('class', 'row space-between align-center');
-  $columnHalftwo.appendChild($rowTwo);
-
-  var $h3 = document.createElement('h3');
-  $h3.textContent = data.entries.title;
-  $rowTwo.appendChild($h3);
-
-  var $i = document.createElement('i');
-  $i.setAttribute('class', 'fas fa-pen pen');
-  $i.setAttribute('data-view-id', data.nextEntryId);
-  $rowTwo.appendChild($i);
-
-  var $rowThree = document.createElement('div');
-  $rowThree.setAttribute('class', 'row');
-  $columnHalftwo.appendChild($rowThree);
-
-  var $p = document.createElement('p');
-  $p.textContent = data.entries.notes;
-  $rowThree.appendChild($p);
-
-  return $li;
-}
-
 function renderTree(newObject) {
   var $li = document.createElement('li');
+  $li.setAttribute('class', 'journal-entry');
 
   var $rowOne = document.createElement('div');
   $rowOne.setAttribute('class', 'row');
