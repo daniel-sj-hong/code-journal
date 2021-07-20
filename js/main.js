@@ -8,6 +8,7 @@ var $entries = document.querySelector('.entries');
 var $input = document.querySelectorAll('.input');
 var $noEntries = document.querySelector('.none');
 var $newButton = document.querySelector('.new-button');
+var $heading = document.querySelector('.heading');
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
@@ -155,5 +156,6 @@ function handleEdit(event) {
     $form.elements.photo.value = data.editing.url;
     $form.elements.notes.value = data.editing.notes;
     $img.setAttribute('src', data.editing.url);
+    $heading.textContent = 'Edit Entry';
   }
 }
