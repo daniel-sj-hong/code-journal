@@ -37,6 +37,7 @@ function handleSubmit(event) {
         edit[i].replaceWith(editEntryItem);
       }
     }
+    data.editing = null;
   } else {
     var newObject = {
       title: $form.elements.title.value,
@@ -53,6 +54,7 @@ function handleSubmit(event) {
   }
   data.view = 'entries';
   switchView();
+
 }
 
 function renderTree(newObject) {
@@ -86,7 +88,7 @@ function renderTree(newObject) {
 
   var $i = document.createElement('i');
   $i.setAttribute('class', 'fas fa-pen pen');
-  $i.setAttribute('data-view-id', data.nextEntryId);
+  $i.setAttribute('data-view-id', newObject.entryId);
   $rowTwo.appendChild($i);
 
   var $rowThree = document.createElement('div');
@@ -121,7 +123,6 @@ function handleNew(event) {
   if (data.view === 'entry-form') {
     switchView();
   }
-  data.editing = null;
 }
 
 function switchView(event) {
