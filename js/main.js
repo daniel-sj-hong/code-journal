@@ -8,12 +8,14 @@ var $entries = document.querySelector('.entries');
 var $input = document.querySelectorAll('.input');
 var $noEntries = document.querySelector('.none');
 var $newButton = document.querySelector('.new-button');
+var $heading = document.querySelector('.heading');
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
 window.addEventListener('DOMContentLoaded', handleLoad);
 $entries.addEventListener('click', handleClick);
 $newButton.addEventListener('click', handleNew);
+$ul.addEventListener('click', handleEdit);
 
 function handleInput(event) {
   $img.setAttribute('src', event.target.value);
@@ -21,22 +23,42 @@ function handleInput(event) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  var newObject = {
-    title: $form.elements.title.value,
-    url: $form.elements.photo.value,
-    notes: $form.elements.notes.value,
-    entryId: data.nextEntryId
-  };
-  data.nextEntryId++;
-  data.entries.unshift(newObject);
-  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $form.reset();
-  $ul.prepend(renderTree(newObject));
-  handleClick();
+  if (data.editing !== null) {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing.entryId === data.entries[i].entryId) {
+        data.entries[i] = {
+          title: $form.elements.title.value,
+          url: $form.elements.photo.value,
+          notes: $form.elements.notes.value,
+          entryId: data.editing.entryId
+        };
+        var edit = document.querySelectorAll('.journal-entry');
+        var editEntryItem = renderTree(data.entries[i]);
+        edit[i].replaceWith(editEntryItem);
+      }
+    }
+  } else {
+    var newObject = {
+      title: $form.elements.title.value,
+      url: $form.elements.photo.value,
+      notes: $form.elements.notes.value,
+      entryId: data.nextEntryId
+    };
+    data.entries.unshift(newObject);
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $form.reset();
+    $ul.prepend(renderTree(newObject));
+    handleClick();
+    data.nextEntryId++;
+  }
+  data.view = 'entries';
+  switchView();
+  data.editing = null;
 }
 
 function renderTree(newObject) {
   var $li = document.createElement('li');
+  $li.setAttribute('class', 'journal-entry');
 
   var $rowOne = document.createElement('div');
   $rowOne.setAttribute('class', 'row');
@@ -48,24 +70,29 @@ function renderTree(newObject) {
 
   var $img = document.createElement('img');
   $img.setAttribute('src', newObject.url);
+  $img.className = 'entry-image';
   $columnHalfOne.appendChild($img);
 
-  var $columnHalfTwo = document.createElement('div');
-  $columnHalfTwo.setAttribute('class', 'column-half');
-  $rowOne.appendChild($columnHalfTwo);
+  var $columnHalftwo = document.createElement('div');
+  $columnHalftwo.setAttribute('class', 'column-half');
+  $rowOne.appendChild($columnHalftwo);
 
   var $rowTwo = document.createElement('div');
-  $rowTwo.setAttribute('class', 'row');
-  $columnHalfTwo.appendChild($rowTwo);
+  $rowTwo.setAttribute('class', 'row space-between align-center');
+  $columnHalftwo.appendChild($rowTwo);
 
   var $h3 = document.createElement('h3');
-  $h3.setAttribute('class', 'margin-top-0');
   $h3.textContent = newObject.title;
   $rowTwo.appendChild($h3);
 
+  var $i = document.createElement('i');
+  $i.setAttribute('class', 'fas fa-pen pen');
+  $i.setAttribute('data-view-id', newObject.entryId);
+  $rowTwo.appendChild($i);
+
   var $rowThree = document.createElement('div');
   $rowThree.setAttribute('class', 'row');
-  $columnHalfTwo.appendChild($rowThree);
+  $columnHalftwo.appendChild($rowThree);
 
   var $p = document.createElement('p');
   $p.textContent = newObject.notes;
@@ -81,8 +108,6 @@ function handleLoad(event) {
   }
 }
 
-switchView();
-
 function handleClick(event) {
   data.view = 'entries';
   if (data.view === 'entries') {
@@ -95,6 +120,8 @@ function handleNew(event) {
   if (data.view === 'entry-form') {
     switchView();
   }
+  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $form.reset();
 }
 
 function switchView(event) {
@@ -110,5 +137,27 @@ function switchView(event) {
     } else {
       $input[i].className = 'input hidden';
     }
+  }
+}
+
+switchView();
+
+function handleEdit(event) {
+  if (event.target.matches('.pen')) {
+    data.view = 'entry-form';
+    switchView();
+    var closest = event.target.closest('i');
+    var viewId = closest.getAttribute('data-view-id');
+    var parseViewId = parseInt(viewId);
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === parseViewId) {
+        data.editing = data.entries[i];
+      }
+    }
+    $form.elements.title.value = data.editing.title;
+    $form.elements.photo.value = data.editing.url;
+    $form.elements.notes.value = data.editing.notes;
+    $img.setAttribute('src', data.editing.url);
+    $heading.textContent = 'Edit Entry';
   }
 }

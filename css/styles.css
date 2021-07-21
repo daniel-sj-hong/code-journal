@@ -27,6 +27,10 @@
   justify-content: flex-end;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
 .save-button {
   padding: 5px 20px;
   color: white;
@@ -34,6 +38,18 @@
   border-radius: 5px;
   background-color: #562b81;
   font-size: 15px;
+}
+
+.pen {
+  color: #562b81;
+}
+
+.margin-bottom {
+  margin-bottom: 30px;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 input {
@@ -67,6 +83,10 @@ ul {
 
 img {
   width: 100%;
+}
+
+.entry-image {
+  margin-bottom: 1rem;
 }
 
 .align-center {
