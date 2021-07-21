@@ -37,7 +37,6 @@ function handleSubmit(event) {
         edit[i].replaceWith(editEntryItem);
       }
     }
-    data.editing = null;
   } else {
     var newObject = {
       title: $form.elements.title.value,
@@ -54,7 +53,7 @@ function handleSubmit(event) {
   }
   data.view = 'entries';
   switchView();
-
+  data.editing = null;
 }
 
 function renderTree(newObject) {
@@ -109,8 +108,6 @@ function handleLoad(event) {
   }
 }
 
-switchView();
-
 function handleClick(event) {
   data.view = 'entries';
   if (data.view === 'entries') {
@@ -123,6 +120,8 @@ function handleNew(event) {
   if (data.view === 'entry-form') {
     switchView();
   }
+  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $form.reset();
 }
 
 function switchView(event) {
@@ -140,6 +139,8 @@ function switchView(event) {
     }
   }
 }
+
+switchView();
 
 function handleEdit(event) {
   if (event.target.matches('.pen')) {
