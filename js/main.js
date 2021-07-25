@@ -12,6 +12,9 @@ var $heading = document.querySelector('.heading');
 var $targetSelector = document.querySelector('.target-selector');
 var $deleteLink = document.querySelector('.delete-link');
 var $modal = document.querySelector('.modal-container');
+var modalOpen = false;
+var $cancelButton = document.querySelector('.cancel-button');
+var $confirmButton = document.querySelector('.confirm-button');
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
@@ -19,7 +22,9 @@ window.addEventListener('DOMContentLoaded', handleLoad);
 $entries.addEventListener('click', handleClick);
 $newButton.addEventListener('click', handleNew);
 $ul.addEventListener('click', handleEdit);
-$deleteLink.addEventListener('click', handleDelete);
+$deleteLink.addEventListener('click', handleModal);
+$cancelButton.addEventListener('click', handleClose);
+$confirmButton.addEventListener('click', handleDelete);
 
 function handleInput(event) {
   $img.setAttribute('src', event.target.value);
@@ -170,6 +175,20 @@ function handleEdit(event) {
   }
 }
 
+function handleModal(event) {
+  if (modalOpen === false) {
+    $modal.className = 'modal-container';
+    modalOpen = true;
+  }
+}
+
+function handleClose(event) {
+  if (modalOpen === true) {
+    $modal.className = 'hidden';
+    modalOpen = false;
+  }
+}
+
 function handleDelete(event) {
-  $modal.className = 'modal-container';
+
 }
