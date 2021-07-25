@@ -9,6 +9,8 @@ var $input = document.querySelectorAll('.input');
 var $noEntries = document.querySelector('.none');
 var $newButton = document.querySelector('.new-button');
 var $heading = document.querySelector('.heading');
+var $targetSelector = document.querySelector('.target-selector');
+var $deleteLink = document.querySelector('.delete-link');
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
@@ -16,6 +18,7 @@ window.addEventListener('DOMContentLoaded', handleLoad);
 $entries.addEventListener('click', handleClick);
 $newButton.addEventListener('click', handleNew);
 $ul.addEventListener('click', handleEdit);
+// $deleteLink.addEventListener('click', handleDelete);
 
 function handleInput(event) {
   $img.setAttribute('src', event.target.value);
@@ -159,5 +162,7 @@ function handleEdit(event) {
     $form.elements.notes.value = data.editing.notes;
     $img.setAttribute('src', data.editing.url);
     $heading.textContent = 'Edit Entry';
+    $targetSelector.className = 'column-full margin-top-10 align-center space-between target-selector';
+    $deleteLink.className = 'delete-link';
   }
 }
