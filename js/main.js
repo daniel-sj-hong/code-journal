@@ -11,6 +11,7 @@ var $newButton = document.querySelector('.new-button');
 var $heading = document.querySelector('.heading');
 var $targetSelector = document.querySelector('.target-selector');
 var $deleteLink = document.querySelector('.delete-link');
+var $modal = document.querySelector('.modal-container');
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
@@ -18,7 +19,7 @@ window.addEventListener('DOMContentLoaded', handleLoad);
 $entries.addEventListener('click', handleClick);
 $newButton.addEventListener('click', handleNew);
 $ul.addEventListener('click', handleEdit);
-// $deleteLink.addEventListener('click', handleDelete);
+$deleteLink.addEventListener('click', handleDelete);
 
 function handleInput(event) {
   $img.setAttribute('src', event.target.value);
@@ -125,6 +126,8 @@ function handleNew(event) {
   }
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+  $deleteLink.className = 'hidden';
+  $targetSelector.className = 'column-full margin-top-10 align-center justify-end target-selector';
 }
 
 function switchView(event) {
@@ -165,4 +168,8 @@ function handleEdit(event) {
     $targetSelector.className = 'column-full margin-top-10 align-center space-between target-selector';
     $deleteLink.className = 'delete-link';
   }
+}
+
+function handleDelete(event) {
+  $modal.className = 'modal-container';
 }

@@ -115,3 +115,44 @@ a {
   color: red;
   text-decoration: underline;
 }
+
+.relative {
+  position: relative;
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.cancel-button {
+  background-color: #b6b6b6;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.confirm-button {
+  background-color: #dc2626;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+.modal-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 15em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 15px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px 1000px rgba(0, 0, 0, 0.53);
+}
