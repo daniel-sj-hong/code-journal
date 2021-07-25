@@ -110,3 +110,8 @@ a {
 .text-center {
   text-align: center;
 }
+
+.delete-link {
+  color: red;
+  text-decoration: underline;
+}
