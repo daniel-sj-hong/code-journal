@@ -15,6 +15,7 @@ var $modal = document.querySelector('.modal-container');
 var modalOpen = false;
 var $cancelButton = document.querySelector('.cancel-button');
 var $confirmButton = document.querySelector('.confirm-button');
+var currentId = null;
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
@@ -68,6 +69,7 @@ function handleSubmit(event) {
 function renderTree(newObject) {
   var $li = document.createElement('li');
   $li.setAttribute('class', 'journal-entry');
+  $li.setAttribute('data-entry-id', newObject.entryId);
 
   var $rowOne = document.createElement('div');
   $rowOne.setAttribute('class', 'row');
@@ -165,6 +167,7 @@ function handleEdit(event) {
         data.editing = data.entries[i];
       }
     }
+    currentId = data.editing.entryId;
     $form.elements.title.value = data.editing.title;
     $form.elements.photo.value = data.editing.url;
     $form.elements.notes.value = data.editing.notes;
@@ -190,5 +193,16 @@ function handleClose(event) {
 }
 
 function handleDelete(event) {
-
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === currentId) {
+      data.entries.splice(i, 1);
+    }
+  }
+  var $li = document.querySelectorAll('.data-entry-id');
+  for (var j = 0; j < $li.length; j++) {
+    if ($li[j] === currentId) {
+      $li[j].remove();
+    }
+  }
+  handleClose();
 }
