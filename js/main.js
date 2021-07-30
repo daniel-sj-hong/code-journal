@@ -9,6 +9,13 @@ var $input = document.querySelectorAll('.input');
 var $noEntries = document.querySelector('.none');
 var $newButton = document.querySelector('.new-button');
 var $heading = document.querySelector('.heading');
+var $targetSelector = document.querySelector('.target-selector');
+var $deleteLink = document.querySelector('.delete-link');
+var $modal = document.querySelector('.modal-container');
+var modalOpen = false;
+var $cancelButton = document.querySelector('.cancel-button');
+var $confirmButton = document.querySelector('.confirm-button');
+var currentId = null;
 
 $photo.addEventListener('input', handleInput);
 $form.addEventListener('submit', handleSubmit);
@@ -16,6 +23,9 @@ window.addEventListener('DOMContentLoaded', handleLoad);
 $entries.addEventListener('click', handleClick);
 $newButton.addEventListener('click', handleNew);
 $ul.addEventListener('click', handleEdit);
+$deleteLink.addEventListener('click', handleModal);
+$cancelButton.addEventListener('click', handleClose);
+$confirmButton.addEventListener('click', handleDelete);
 
 function handleInput(event) {
   $img.setAttribute('src', event.target.value);
@@ -59,6 +69,7 @@ function handleSubmit(event) {
 function renderTree(newObject) {
   var $li = document.createElement('li');
   $li.setAttribute('class', 'journal-entry');
+  $li.setAttribute('id', newObject.entryId);
 
   var $rowOne = document.createElement('div');
   $rowOne.setAttribute('class', 'row');
@@ -122,6 +133,8 @@ function handleNew(event) {
   }
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+  $deleteLink.className = 'hidden';
+  $targetSelector.className = 'column-full margin-top-10 align-center justify-end target-selector';
 }
 
 function switchView(event) {
@@ -154,10 +167,41 @@ function handleEdit(event) {
         data.editing = data.entries[i];
       }
     }
+    currentId = data.editing.entryId;
     $form.elements.title.value = data.editing.title;
     $form.elements.photo.value = data.editing.url;
     $form.elements.notes.value = data.editing.notes;
     $img.setAttribute('src', data.editing.url);
     $heading.textContent = 'Edit Entry';
+    $targetSelector.className = 'column-full margin-top-10 align-center space-between target-selector';
+    $deleteLink.className = 'delete-link';
   }
+}
+
+function handleModal(event) {
+  if (modalOpen === false) {
+    $modal.className = 'modal-container';
+    modalOpen = true;
+  }
+}
+
+function handleClose(event) {
+  if (modalOpen === true) {
+    $modal.className = 'hidden';
+    modalOpen = false;
+  }
+}
+
+function handleDelete(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === currentId) {
+      data.entries.splice(i, 1);
+    }
+  }
+  data.editing = null;
+  var $li = document.getElementById(currentId);
+  $li.remove();
+  handleClose();
+  data.view = 'entries';
+  switchView();
 }
