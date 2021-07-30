@@ -69,7 +69,7 @@ function handleSubmit(event) {
 function renderTree(newObject) {
   var $li = document.createElement('li');
   $li.setAttribute('class', 'journal-entry');
-  $li.setAttribute('data-entry-id', newObject.entryId);
+  $li.setAttribute('id', newObject.entryId);
 
   var $rowOne = document.createElement('div');
   $rowOne.setAttribute('class', 'row');
@@ -198,11 +198,10 @@ function handleDelete(event) {
       data.entries.splice(i, 1);
     }
   }
-  var $li = document.querySelectorAll('.data-entry-id');
-  for (var j = 0; j < $li.length; j++) {
-    if ($li[j] === currentId) {
-      $li[j].remove();
-    }
-  }
+  data.editing = null;
+  var $li = document.getElementById(currentId);
+  $li.remove();
   handleClose();
+  data.view = 'entries';
+  switchView();
 }
